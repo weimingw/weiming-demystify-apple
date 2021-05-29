@@ -1,0 +1,106 @@
+
+@use './variables';
+
+@font-face {
+    font-family: variables.$base-font-family;
+    src: url("./Heebo.ttf");
+}
+
+html {
+    font-family: variables.$base-font-family;
+    font-size: variables.$base-font-size;
+    color: variables.$color-dark;
+}
+
+.app {
+    font-size: 1.4rem;
+    line-height: 2em;
+}
+
+.app h1, 
+.app h2, 
+.app h3, 
+.app h4, 
+.app h5, 
+.app h6, 
+.app p {
+    margin: 0;
+}
+
+.app h1, 
+.app h2, 
+.app h3, 
+.app h4, 
+.app h5, 
+.app h6, 
+.app p {
+    padding: 0 1rem;
+}
+
+.app button, 
+.app input {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: #fff;
+    background: variables.$color-accent-dark;
+    border-radius: 0.5rem;
+}
+
+.app button:hover,
+.app input[type=button]:hover {
+    background: variables.$color-accent-light;
+}
+
+.app button, .app input[type=button] {
+    border: 0px;
+    cursor: pointer;
+}
+
+.app input[type=checkbox] {
+    height: 1.6rem;
+    width: 1.6rem;
+}
+
+.app h1 {
+    font-size: 2.4rem;
+}
+
+.app h2 {
+    font-size: 2.2rem;
+}
+
+.app h3 {
+    font-size: 2.0rem;
+}
+
+.app h4 {
+    font-size: 1.8rem;
+}
+
+.app h5 {
+    font-size: 1.6rem;
+}
+
+.app h6 {
+    font-size: 1.4rem;
+}
+
+.app p {
+    font-size: 1.4rem;
+}
+ 
+.app a {
+    text-decoration: none;
+    color: variables.$color-blue;
+}
+
+.app a:hover {
+    color: transparentize(variables.$color-blue, 0.25);
+}
+
+.app label {
+    display: flex;
+    align-items: center;
+}
