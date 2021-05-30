@@ -13,10 +13,11 @@ export default function Basic(props) {
     return (
         <ScrollContext.Provider value={{ scrollingElement }}>
             <div className="scrolling-view" ref={scrollingElRef}>
-                <StickyView height={4320}>
+                <StickyView height={3240}>
                     {(proportion) => (
                         <div className="basic-sticky-content">
                             <h1>{proportion}</h1>
+                            <h6>Scroll this page!</h6>
                             <p>
                                 As you scroll, you'll notice that this number
                                 changes, but its contents stay stuck on screen.
@@ -30,6 +31,34 @@ export default function Basic(props) {
                                 1 when the bottom of the sticky container is at
                                 the bottom of its parent
                             </li>
+                        </div>
+                    )}
+                </StickyView>
+                <StickyView height={3240}>
+                    {(proportion) => (
+                        <div className="basic-sticky-content sticky-content-2">
+                            <h1>{proportion}</h1>
+                            <p>
+                                Notice that the other sticky element is gone and
+                                this one has the spotlight now.
+                            </p>
+                            <p>Also, notice that:</p>
+                            <li>
+                                When the last sticky element moved out, its
+                                proportion is above 1.
+                            </li>
+                            <li>
+                                When the this sticky element is moving in, its
+                                proportion is above below 0.
+                            </li>
+                        </div>
+                    )}
+                </StickyView>
+                <StickyView height={3240}>
+                    {(proportion) => (
+                        <div className="basic-sticky-content">
+                            <h1>{proportion}</h1>
+                            <p>This is the third one.</p>
                         </div>
                     )}
                 </StickyView>

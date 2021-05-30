@@ -13,9 +13,12 @@
     position: sticky;
     top: 0;
     flex-grow: 0;
+    flex-wrap: wrap;
 }
 
 .header > * {
+    text-align: center;
+    width: 10rem;
     padding: 0.5rem 3rem;
     margin-right: 0.5rem;
     border-radius: 2rem;
