@@ -1,4 +1,4 @@
-# Base React Repo
+# Demystifying the JavaScript Behind Apple's Product Pages
 
 ## Installation
 - npm install

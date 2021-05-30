@@ -1,0 +1,29 @@
+@use './global/variables.scss';
+
+.app {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    flex-grow: 0;
+}
+
+.header > * {
+    padding: 0.5rem 3rem;
+    margin-right: 0.5rem;
+    border-radius: 2rem;
+    border: 0.1rem solid variables.$color-accent-light;
+}
+
+.app > *:nth-child(2) {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
