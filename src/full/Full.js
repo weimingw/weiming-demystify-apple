@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import StickyView from '../common/StickyView';
 import ScrollContext from '../common/ScrollContext';
 import './full.scss';
+import { getInterpolators } from './interpolators';
 
 export default function Full(props) {
     const [scrollingElement, setScrollingElement] = useState(null);
 
+    const {
+        firstSectionInterpolator,
+        secondSectionBackgroundInterpolator,
+        secondSectionForegroundInterpolator,
+    } = useMemo(() => getInterpolators());
+
     function scrollingElRef(ref) {
         setScrollingElement(ref);
+    }
+
+    function checkActive(proportion, lower, upper) {
+        return proportion > lower && proportion < upper ? 'active' : '';
     }
 
     return (
@@ -15,41 +26,94 @@ export default function Full(props) {
             <div className="scrolling-view" ref={scrollingElRef}>
                 <StickyView height={3240}>
                     {(proportion) => (
-                        <div className="full-sticky-content">
-                            <h1>{proportion}</h1>
-                            <p>
-                                As you scroll, you'll notice that this number
-                                changes, but its contents stay stuck on screen.
-                            </p>
-                            <p>This number goes from:</p>
-                            <li>
-                                0 when the top of the sticky container is at the
-                                top of its parent
-                            </li>
-                            <li>
-                                1 when the bottom of the sticky container is at
-                                the bottom of its parent
-                            </li>
+                        <div className="full-sticky-content sticky-content-1">
+                            <h5 className="full-directions">
+                                Scroll this page!
+                            </h5>
+                            <div
+                                className="full-sticky-foreground"
+                                style={firstSectionInterpolator(proportion)}
+                            >
+                                <h1>{proportion}</h1>
+                                <p>
+                                    This section has code that takes the number
+                                    above and does the following:
+                                </p>
+                                <p>Below 0, has 0 opacity</p>
+                                <p className={checkActive(proportion, 0, 0.1)}>
+                                    Between 0 and 0.1, fades in and scales down
+                                    from 4 to 1.
+                                </p>
+                                <p className={checkActive(proportion, 0.1, 1)}>
+                                    Between 0.1 and 1, has full opacity and no
+                                    scaling.
+                                </p>
+                                <p className={checkActive(proportion, 1, 1.1)}>
+                                    Between 1 and 1.1, fades out and scales up
+                                    from 1 to 4.
+                                </p>
+                                <p>Above 1.1, has 0 opacity.</p>
+                            </div>
                         </div>
                     )}
                 </StickyView>
                 <StickyView height={3240}>
                     {(proportion) => (
                         <div className="full-sticky-content sticky-content-2">
-                            <h1>{proportion}</h1>
-                            <p>
-                                Notice that the other sticky element is gone and
-                                this one has the spotlight now.
-                            </p>
-                            <p>Also, notice that:</p>
-                            <li>
-                                When the last sticky element moved out, its
-                                proportion is above 1.
-                            </li>
-                            <li>
-                                When the this sticky element is moving in, its
-                                proportion is above below 0.
-                            </li>
+                            <h5 className="full-directions">
+                                Keep scrolling, this section is interesting!
+                            </h5>
+                            <div
+                                className="full-sticky-foreground"
+                                style={secondSectionForegroundInterpolator(
+                                    proportion
+                                )}
+                            >
+                                <h1>{proportion}</h1>
+                                <p>
+                                    This section has code that takes the number
+                                    above and does the following:
+                                </p>
+                                <h6>The background:</h6>
+                                <p>
+                                    Below -0.3, background has 0.05 scaleX and
+                                    200px translateY.
+                                </p>
+                                <p>
+                                    Between -0.3 and 0, background scaleX
+                                    increases to 1 and translateY decreases to
+                                    0.
+                                </p>
+                                <p>
+                                    Between 1 and 1.3, background scaleX
+                                    decreases to 0.
+                                </p>
+
+                                <h6>The background:</h6>
+                                <p>
+                                    Immediately appears when proportion is
+                                    between 0 and 1 with no scaling
+                                </p>
+                                <p>
+                                    An animation happens because of the CSS
+                                    'transition' property.
+                                </p>
+                                <p>
+                                    This decouples the animation part of the
+                                    transition while continuing to make it
+                                    dependent on scroll position! (CSS is pretty
+                                    cool!)
+                                </p>
+                            </div>
+                            <div
+                                className="full-sticky-background"
+                                style={{
+                                    height: scrollingElement?.clientHeight,
+                                    ...secondSectionBackgroundInterpolator(
+                                        proportion
+                                    ),
+                                }}
+                            />
                         </div>
                     )}
                 </StickyView>
