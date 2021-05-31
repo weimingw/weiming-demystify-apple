@@ -12,8 +12,15 @@ export default function StickyView(props) {
         const containerRect = container.getBoundingClientRect();
         const selfRect = elRef.current.getBoundingClientRect();
         const offTop = containerRect.y - selfRect.y;
-        const viewHeight = selfRect.height - containerRect.height;
-        setProportion(offTop / viewHeight);
+
+        if (containerRect.height < selfRect.height) {
+            const viewHeight = selfRect.height - containerRect.height;
+            setProportion(offTop / viewHeight);
+        } else {
+            const viewHeight = containerRect.height;
+            const result = offTop < 0 ? offTop / viewHeight : offTop / viewHeight + 1;
+            setProportion(result);
+        }
     }
 
     useEffect(() => {

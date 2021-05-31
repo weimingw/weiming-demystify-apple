@@ -89,10 +89,10 @@ export default function Full(props) {
                                     decreases to 0.
                                 </p>
 
-                                <h6>The background:</h6>
+                                <h6>The text:</h6>
                                 <p>
-                                    Immediately appears when proportion is
-                                    between 0 and 1 with no scaling
+                                    Slides in when proportion is between 0 and
+                                    1, doing so even if you stop scrolling.
                                 </p>
                                 <p>
                                     An animation happens because of the CSS
@@ -100,7 +100,7 @@ export default function Full(props) {
                                 </p>
                                 <p>
                                     This decouples the animation part of the
-                                    transition while continuing to make it
+                                    transition while continuing to make display
                                     dependent on scroll position! (CSS is pretty
                                     cool!)
                                 </p>
@@ -117,11 +117,11 @@ export default function Full(props) {
                         </div>
                     )}
                 </StickyView>
-                <StickyView height={3240}>
+                <StickyView height={480}>
                     {(proportion) => (
                         <div className="full-sticky-content">
                             <h1>{proportion}</h1>
-                            <p>This is the third one.</p>
+                            <p>There's nothing fancy in this one.</p>
                         </div>
                     )}
                 </StickyView>

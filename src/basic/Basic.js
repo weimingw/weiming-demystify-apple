@@ -20,7 +20,7 @@ export default function Basic(props) {
                             <h6>Scroll this page!</h6>
                             <p>
                                 As you scroll, you'll notice that this number
-                                changes, but its contents stay stuck on screen.
+                                changes, and text stays stuck on screen.
                             </p>
                             <p>This number goes from:</p>
                             <li>
@@ -59,6 +59,7 @@ export default function Basic(props) {
                         <div className="basic-sticky-content">
                             <h1>{proportion}</h1>
                             <p>This is the third one.</p>
+                            <p>Nothing important here.</p>
                         </div>
                     )}
                 </StickyView>
